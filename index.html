@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <title>Votaciones</title>
+    <link rel="stylesheet" href="CSS/estilo.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+
+
+    <h2 class="w3-center">Mejor Película del año 2017</h2>
+
+    <div class="w3-content w3-display-container">
+        <img id="0" class="mySlides" onclick="ventanaModal(this)" src="/img/blade-runner-2049.jpg" >
+        <img id="1" class="mySlides" onclick="ventanaModal(this)" src="/img/john.jpg">
+        <img id="2" class="mySlides" onclick="ventanaModal(this)" src="/img/jumanji.jpg">
+        <img id="3" class="mySlides" onclick="ventanaModal(this)" src="/img/justiceleague.jpg">
+        <img id="4" class="mySlides" onclick="ventanaModal(this)" src="/img/kingarthur.jpg" >
+        <img id="5" class="mySlides" onclick="ventanaModal(this)" src="/img/logan.jpg" >
+        <img id="6" class="mySlides" onclick="ventanaModal(this)" src="/img/mazinger.jpg">
+        <img id="7" class="mySlides" onclick="ventanaModal(this)" src="/img/starwars.jpg" >
+        <img id="8" class="mySlides" onclick="ventanaModal(this)" src="/img/thor.jpg" >
+        <img id="9" class="mySlides" onclick="ventanaModal(this)" src="/img/valerian.jpg" >
+        
+        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+
+
+    <!-- The Modal -->
+    <div id="modalpeliculas" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="cerrarModal()">&times;</span>
+                <h2 id="tituloPelicula"><span>Titulo</span></h2>
+            </div>
+            <div id="contenido" class="modal-body">
+                <p>Some text in the Modal Body</p>
+
+            </div>
+            <div class="modal-footer">
+                <h3>Por Teodoro Sergio Reverón Afonso 2DAWA</h3>
+            </div>
+
+        </div>
+    </div>
+    <!-- fin modal -->
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="JS/javascript.js"></script>
+
+</body>
+
+</html>
