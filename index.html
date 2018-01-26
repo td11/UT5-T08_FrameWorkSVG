@@ -47,18 +47,21 @@
             </div>
             <div id="contenido" class="modal-body">
                 <p>Some text in the Modal Body</p>
-                
+
                 <form>
                     <label>Nombre</label><br>
-                    <input id="userNombre" type="text" placeholder="Introduce tu nombre" value=""/><br><br>
+                    <input id="userNombre" type="text" placeholder="Introduce tu nombre" value="" /><br><br>
                     <label>Email</label><br>
-                    <input id="userEmail" type="email" placeholder="Introduce tu email" value=""/>
+                    <input id="userEmail" type="email" placeholder="Introduce tu email" value="" />
                     <br><br>
                     <label>Telefono</label><br>
-                    <input id="userTelefono" type="number" min="9" maxlength="10" placeholder="Introduce tu telefono" value=""/>
+                    <input id="userTelefono" type="number" min="9" maxlength="10" placeholder="Introduce tu telefono" value="" />
                     <br><br>
-                    <input id="login_btn" type="submit" value="Votar" onClick="votar()"/> 
+                    <input id="login_btn" type="submit" value="Votar" onClick="votar()" />
                 </form>
+                <!--Div that will hold the pie chart-->
+                <div id="chart_div"></div>
+
 
             </div>
             <div class="modal-footer">
@@ -71,6 +74,7 @@
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="JS/javascript.js"></script>
 
 </body>
