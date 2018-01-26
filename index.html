@@ -10,21 +10,27 @@
 
 <body>
 
+    <header>
+        <ul>
+            <li><a class="active" href="#home">Inicio</a></li>
+            <li><a href="#votos">Votos</a></li>
+        </ul>
+        <h2 class="w3-center">Mejor Película del año 2017</h2>
+    </header>
 
-    <h2 class="w3-center">Mejor Película del año 2017</h2>
 
     <div class="w3-content w3-display-container">
-        <img id="0" class="mySlides" onclick="ventanaModal(this)" src="/img/blade-runner-2049.jpg" >
+        <img id="0" class="mySlides" onclick="ventanaModal(this)" src="/img/blade-runner-2049.jpg">
         <img id="1" class="mySlides" onclick="ventanaModal(this)" src="/img/john.jpg">
         <img id="2" class="mySlides" onclick="ventanaModal(this)" src="/img/jumanji.jpg">
         <img id="3" class="mySlides" onclick="ventanaModal(this)" src="/img/justiceleague.jpg">
-        <img id="4" class="mySlides" onclick="ventanaModal(this)" src="/img/kingarthur.jpg" >
-        <img id="5" class="mySlides" onclick="ventanaModal(this)" src="/img/logan.jpg" >
+        <img id="4" class="mySlides" onclick="ventanaModal(this)" src="/img/kingarthur.jpg">
+        <img id="5" class="mySlides" onclick="ventanaModal(this)" src="/img/logan.jpg">
         <img id="6" class="mySlides" onclick="ventanaModal(this)" src="/img/mazinger.jpg">
-        <img id="7" class="mySlides" onclick="ventanaModal(this)" src="/img/starwars.jpg" >
-        <img id="8" class="mySlides" onclick="ventanaModal(this)" src="/img/thor.jpg" >
-        <img id="9" class="mySlides" onclick="ventanaModal(this)" src="/img/valerian.jpg" >
-        
+        <img id="7" class="mySlides" onclick="ventanaModal(this)" src="/img/starwars.jpg">
+        <img id="8" class="mySlides" onclick="ventanaModal(this)" src="/img/thor.jpg">
+        <img id="9" class="mySlides" onclick="ventanaModal(this)" src="/img/valerian.jpg">
+
         <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
         <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
     </div>
@@ -41,6 +47,18 @@
             </div>
             <div id="contenido" class="modal-body">
                 <p>Some text in the Modal Body</p>
+                
+                <form>
+                    <label>Nombre</label><br>
+                    <input id="userNombre" type="text" placeholder="Introduce tu nombre" value=""/><br><br>
+                    <label>Email</label><br>
+                    <input id="userEmail" type="email" placeholder="Introduce tu email" value=""/>
+                    <br><br>
+                    <label>Telefono</label><br>
+                    <input id="userTelefono" type="number" min="9" maxlength="10" placeholder="Introduce tu telefono" value=""/>
+                    <br><br>
+                    <input id="login_btn" type="submit" value="Votar" onClick="votar()"/> 
+                </form>
 
             </div>
             <div class="modal-footer">
