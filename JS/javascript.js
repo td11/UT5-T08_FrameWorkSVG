@@ -1,4 +1,6 @@
-var votos = 0;
+var votos = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+var titulopelicula = "";
+var id = "";
 
 /* Inicio */
 $(function () {
@@ -14,36 +16,72 @@ $(function () {
             $("body .modal").css('display', 'none');
         }
     }
+
+    $('img').keyup(function (e) {
+        if (e.keyCode == 13) {
+            ventanaModal(this);
+        }
+    });
     
+    $('.close').keyup(function (e) {
+        if (e.keyCode == 13) {
+            cerrarModal();
+        }
+    });
+
 
 });
 
 
+function mostrarGraficoOriginal() {
+    $("#contenido p").css('display', 'none');
+    $("#contenido form").css('display', 'none');
+    $("body .modal").css('display', 'block');
+    $('#contenido #chart_div').css('display', 'block');
+}
+
+function mostrarGraficoDonut() {
+    $("#contenido p").css('display', 'none');
+    $("#contenido form").css('display', 'none');
+    $("body .modal").css('display', 'block');
+    $('#contenido #donutchart').css('display', 'block');
+}
 
 /* control de votos */
-function votar(){
-    // Load the Visualization API and the corechart package.
-    google.charts.load('current', {
-        'packages': ['corechart']
-    });
-
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart);
-    
-    mostrarGrafico();
-    
+function votar() {
+    var elecciongrafico = $('#contenido #eleccion').find('option:selected').text();
+    votos[parseInt(id)]++;
+    switch (elecciongrafico) {
+        case 'Original':
+            cargarGraficoNormal();
+            mostrarGraficoOriginal();
+            break;
+        case 'Donut':
+            cargarGraficoDonut();
+            mostrarGraficoDonut();
+            break;
+    }
 
 }
 
+
+
 /* Cargar google chart*/
-function cargarGrafico(){
-    // Load the Visualization API and the corechart package.
+function cargarGraficoNormal() {
     google.charts.load('current', {
         'packages': ['corechart']
     });
-
-    // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawChart);
+
+}
+
+/* Cargar grafico donut */
+function cargarGraficoDonut() {
+
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawDonut);
 
 }
 
@@ -51,7 +89,7 @@ function cargarGrafico(){
 /* Cargar ventana modal */
 function ventanaModal(elemento) {
     limpiarVentanaModal();
-    var id = $(elemento).attr("id");
+    id = $(elemento).attr("id");
     $("body .modal").css('display', 'block');
     $.getJSON("JS/datosimagenes.json", function (json) {
         console.log(json.datosImagenes[0].titulo);
@@ -65,18 +103,15 @@ function ventanaModal(elemento) {
 /* Cerrar modal */
 function cerrarModal() {
     $("body .modal").css('display', 'none');
+    $('#contenido #chart_div').css('display', 'none');
+    $('#contenido #donutchart').css('display', 'none');
+    $("#contenido form").css('display', 'block');
 }
 
 /* Vaciar ventana modal */
 function limpiarVentanaModal() {
     $(".modal-header #tituloPelicula span").remove();
     $("#contenido p").remove();
-}
-
-function mostrarGrafico(){
-    $("#contenido p").css('display','none');
-    $("#contenido form").css('display','none');
-    $('#chart_div').css('display','block');
 }
 
 /* Slider */
@@ -115,12 +150,18 @@ function drawChart() {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Topping');
     data.addColumn('number', 'Slices');
-
-    $.getJSON("JS/datosimagenes.json", function (json) {
-        for (var i = 0; i > 10; i++) {
-            data.addRows([[json.datosImagenes[i].titulo, 1],]);
-        }
-    });
+    data.addRows([
+          ['Blade Runner 2049', votos[0]],
+          ['John Wick 2', votos[1]],
+          ['Jumanji', votos[2]],
+          ['La Liga de la Justicia', votos[3]],
+          ['El Rey Arturo', votos[4]],
+          ['Logan', votos[5]],
+          ['Mazinger Z', votos[6]],
+          ['Star Wars TLJ', votos[7]],
+          ['Thor Ragnarok', votos[8]],
+          ['Valerian', votos[9]]
+    ]);
 
     // Set chart options
     var options = {
@@ -134,4 +175,30 @@ function drawChart() {
     chart.draw(data, options);
 }
 
+// dibujar grafico donut
+function drawDonut() {
+    // Create the data table.
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Topping');
+    data.addColumn('number', 'Slices');
+    data.addRows([
+          ['Blade Runner 2049', votos[0]],
+          ['John Wick 2', votos[1]],
+          ['Jumanji', votos[2]],
+          ['La Liga de la Justicia', votos[3]],
+          ['El Rey Arturo', votos[4]],
+          ['Logan', votos[5]],
+          ['Mazinger Z', votos[6]],
+          ['Star Wars TLJ', votos[7]],
+          ['Thor Ragnarok', votos[8]],
+          ['Valerian', votos[9]]
+    ]);
 
+    var options = {
+        title: 'Votos mejor pelicula del año segundo grafico',
+        pieHole: 0.4,
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    chart.draw(data, options);
+}
